@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang='fr'>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover'>
+<title>Marathon Jules Bianchi 2026 — Pilotes</title>
+<style>
+:root{--bg:#FFFFFF;--panel:#F6F7F9;--ink:#15181E;--mut:#6A7180;--faint:#9AA1AE;--line:#E3E6EC;--line2:#D3D8E0;--accent:#C8102E;--cat:#2A3342;--catbg:#EEF1F5;--amber:#B7791F;--r:6px;--shadow:0 1px 2px rgba(20,24,30,.06)}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.4;padding-bottom:40px}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:660px;margin:0 auto;padding:0 14px}
+header{background:var(--ink);color:#fff;border-bottom:3px solid var(--accent);position:sticky;top:0;z-index:20}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 14px}
+h1{font-size:13.5px;margin:0;font-weight:700;letter-spacing:1.2px;text-transform:uppercase}
+.h-sub{font-size:10px;color:#AEB4C0;margin-top:3px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600}
+.h-clock{font-size:9.5px;color:#AEB4C0;text-align:right;letter-spacing:1px;text-transform:uppercase;min-width:92px}
+.h-clock b{display:block;font-size:16px;color:#fff;letter-spacing:1px;margin-top:2px;font-variant-numeric:tabular-nums}
+.live{margin-top:14px;display:flex;align-items:center;gap:11px;border:1px solid var(--line);border-radius:var(--r);padding:11px 13px;background:var(--panel)}
+.live .dot{width:9px;height:9px;border-radius:50%;background:var(--faint);flex:none}
+.live.on .dot{background:var(--accent);box-shadow:0 0 0 4px rgba(200,16,46,.14)}
+.live .lt{flex:1;min-width:0}
+.live .lt .t{font-size:12px;font-weight:700;letter-spacing:.3px}
+.live .lt .s{font-size:10.5px;color:var(--mut);margin-top:1px}
+.live a,.live span.btn{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;text-decoration:none;padding:8px 13px;border-radius:5px;white-space:nowrap}
+.live a{background:var(--accent);color:#fff}
+.live span.btn{background:var(--line);color:var(--faint)}
+.meta{font-size:11px;color:var(--mut);margin-top:9px;text-align:center;letter-spacing:.2px}
+.lbl{font-size:10px;text-transform:uppercase;letter-spacing:1.4px;color:var(--mut);font-weight:700;margin:18px 2px 8px}
+select{width:100%;padding:14px 13px;font-size:16px;font-weight:600;border-radius:var(--r);border:1px solid var(--line2);background:#fff;color:var(--ink)}
+.phead{margin-top:8px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.ph-top{padding:14px 15px;display:flex;align-items:center;gap:11px;border-bottom:1px solid var(--line)}
+.ph-name{font-size:19px;font-weight:800;flex:1;letter-spacing:.2px}
+.chip{font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:4px 9px;border-radius:4px;background:var(--catbg);color:var(--cat)}
+.ph-stats{display:flex}
+.ps{flex:1;padding:10px 6px;text-align:center;border-right:1px solid var(--line)}
+.ps:last-child{border:none}
+.ps .v{font-size:16px;font-weight:800}
+.ps .k{font-size:9px;color:var(--mut);text-transform:uppercase;letter-spacing:.7px;margin-top:2px;font-weight:600}
+.next{margin-top:14px;border:1px solid var(--line2);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.next .nh{background:var(--ink);color:#fff;padding:8px 14px;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.next .nh .rn{color:#AEB4C0}
+.cdrow{display:flex}
+.cd{flex:1;padding:14px 15px;border-right:1px solid var(--line)}
+.cd:last-child{border:none}
+.cd .k{font-size:9.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;font-weight:700}
+.cd .big{font-size:26px;font-weight:800;line-height:1.05;margin-top:4px}
+.cd .abs{font-size:11.5px;color:var(--mut);margin-top:2px;font-weight:600}
+.cd.go .big{color:var(--accent)}
+.cd.urgent .big{color:var(--accent)}
+.cd.urgent .k{color:var(--accent)}
+.pan{padding:9px 15px;border-top:1px solid var(--line);font-size:11.5px;color:var(--mut);font-weight:600}
+.pan b{color:var(--ink)}
+.stint{margin-top:9px;border:1px solid var(--line);border-radius:var(--r);padding:11px 14px;display:flex;align-items:center;gap:12px;background:#fff}
+.stint.next-line{border-color:var(--accent);border-left-width:3px}
+.stint.done{opacity:.5}
+.stint .rn{font-size:10.5px;font-weight:800;color:var(--faint);letter-spacing:.5px;min-width:38px}
+.stint .mid{flex:1}
+.stint .mid .e{font-size:15px;font-weight:800}
+.stint .mid .c{font-size:11px;color:var(--amber);font-weight:600;margin-top:1px}
+.stint .rt{text-align:right}
+.stint .rt .d{font-size:12px;font-weight:700;color:var(--mut)}
+.stint .rt .st{font-size:9.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.5px;margin-top:1px;font-weight:700}
+.stint .rt .st.now{color:var(--accent)}
+.foot{margin-top:22px;text-align:center}
+.lk{font-size:11.5px;color:var(--mut);background:none;border:none;text-decoration:underline;cursor:pointer;padding:8px}
+.hint{font-size:12.5px;color:var(--mut);text-align:center;padding:28px 20px;line-height:1.7}
+.track{margin-top:10px;padding:9px 13px;border:1px solid var(--line);border-radius:var(--r);font-size:12.5px;background:#fff;display:flex;align-items:center;gap:9px}
+.track .tk{font-size:9.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:3px 8px;border-radius:4px;background:var(--ink);color:#fff;white-space:nowrap}
+.track.on{border-color:var(--accent)}
+.track.on .tk{background:var(--accent)}
+.track.chg .tk{background:var(--amber)}
+.chg{margin-top:14px;border:1px solid #F2D9A6;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.chg .ch{background:#FFF8E8;color:#7A5200;padding:8px 14px;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;font-weight:800}
+.chg .cl{padding:9px 14px;border-top:1px solid #F5E6C4;font-size:12.5px;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.chg .cl .w{color:var(--mut);font-size:10.5px;white-space:nowrap}
+.chg .ok{display:block;width:100%;border:none;border-top:1px solid #F2D9A6;background:#FFF8E8;color:#7A5200;font:inherit;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:13px;cursor:pointer}
+.tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-left:7px;vertical-align:2px}
+.tag.m{background:#FFE3A8;color:#7A5200}
+.tag.r{background:#FDE3E6;color:#A30D24}
+.ps .v.bad{color:var(--accent)}
+.warn{padding:9px 15px;border-top:1px solid var(--line);font-size:11.5px;color:var(--accent);font-weight:700}
+</style>
+</head>
+<body>
+<header><div class='wrap'>
+<div><h1>Marathon Jules Bianchi 2026</h1><div class='h-sub'>Circuit Paul Ricard</div></div>
+<div class='h-clock' id='clock'></div>
+</div></header>
+<div class='wrap'>
+<div class='live' id='live'></div>
+<div class='meta' id='meta'></div>
+<div class='track' id='track'></div>
+<div class='lbl'>Sélection pilote</div>
+<select id='who'><option value=''>— Choisis ton nom —</option></select>
+<div id='panel'></div>
+<div class='foot'><button class='lk' id='toggleAll'>Planning complet de l'équipe</button></div>
+<div id='fullPlan' style='display:none'></div>
+<div class='meta' id='maj' style='margin-top:18px'></div>
+</div>
+<script>
+'use strict';
+const CFG={"dep":"2026-10-02T19:41:10","arrivee":"2026-10-04T14:01:00","n":14,"nrel":65,"d1":40,"d2":34,"lmax":30,"live":"","maj":"2026-09-25T11:53:33","mod":"2026-09-22T15:51:57","pil":[{"n":"David D","c":1,"l":14,"a":1},{"n":"Mathieu P","c":1,"l":30,"a":1},{"n":"Nicolas B","c":1,"l":38,"a":1},{"n":"Ludovic M","c":1,"l":38,"a":1},{"n":"Victorien P","c":1,"l":22,"a":1},{"n":"Romain D","c":1,"l":9,"a":1},{"n":"Pascal V","c":1,"l":41,"a":1},{"n":"Pierre-Antoine V","c":2,"l":41,"a":1},{"n":"Mathis D","c":2,"l":38,"a":1},{"n":"Pm V","c":2,"l":35,"a":1},{"n":"François M","c":2,"l":30,"a":1},{"n":"Romain R","c":2,"l":15.5,"a":1},{"n":"Cyril D","c":2,"l":20,"a":1},{"n":"Jerome T","c":2,"a":1},{"n":"Pilote 15","c":2,"l":30},{"n":"Pilote 16","c":2,"l":30},{"n":"Pilote 17","c":2,"l":30},{"n":"Pilote 18","c":2,"l":30},{"n":"Pilote 19","c":2,"l":30},{"n":"Pilote 20","c":2,"l":30}],"relays":[{"r":1,"cat":1,"n":"David D","c":"2026-10-02T18:41:10","e":"2026-10-02T19:41:10","f":"2026-10-02T20:21:10","p":"2026-10-02T20:18:10","d":2400,"rz":-1,"ct":"2026-09-22T15:42:05","on":"Romain","oe":"2026-10-02T19:41:10"},{"r":2,"cat":1,"n":"Mathieu P","c":"2026-10-02T19:23:10","e":"2026-10-02T20:23:10","f":"2026-10-02T21:03:10","p":"2026-10-02T21:00:10","d":2400,"rz":-1,"ct":"2026-09-22T15:45:49","on":"Mathieu P","oe":"2026-10-02T20:38:10"},{"r":3,"cat":1,"n":"Nicolas B","c":"2026-10-02T20:05:10","e":"2026-10-02T21:05:10","f":"2026-10-02T21:45:10","p":"2026-10-02T21:42:10","d":2400,"rz":-1,"ct":"2026-09-22T15:51:57","on":"Nicolas B","oe":"2026-10-02T21:15:10"},{"r":4,"cat":1,"n":"Ludovic M","c":"2026-10-02T20:47:10","e":"2026-10-02T21:47:10","f":"2026-10-02T22:27:10","p":"2026-10-02T22:24:10","d":2400,"rz":-1,"ct":"2026-09-22T15:51:57","on":"Ludovic M","oe":"2026-10-02T22:02:10"},{"r":5,"cat":1,"n":"Victorien P","c":"2026-10-02T21:29:10","e":"2026-10-02T22:29:10","f":"2026-10-02T23:09:10","p":"2026-10-02T23:06:10","d":2400,"rz":-1,"ct":"2026-09-22T15:51:57","on":"Victorien P","oe":"2026-10-02T22:49:10"},{"r":6,"cat":1,"n":"Romain D","c":"2026-10-02T22:11:10","e":"2026-10-02T23:11:10","f":"2026-10-02T23:51:10","p":"2026-10-02T23:48:10","d":2400,"rz":-1,"ct":"2026-09-22T15:51:57","on":"Romain D","oe":"2026-10-02T23:36:10"},{"r":7,"cat":1,"n":"Pascal V","c":"2026-10-02T22:53:10","e":"2026-10-02T23:53:10","f":"2026-10-03T00:33:10","p":"2026-10-03T00:30:10","d":2400,"rz":-1,"ct":"2026-09-22T15:51:57","on":"Pascal V","oe":"2026-10-03T00:23:10"},{"r":8,"cat":2,"n":"Pierre-Antoine V","c":"2026-10-02T23:35:10","e":"2026-10-03T00:35:10","f":"2026-10-03T01:08:54","p":"2026-10-03T01:05:54","d":2024,"rz":-1,"ct":"2026-09-22T15:51:57","on":"Pierre-Antoine V","oe":"2026-10-03T01:10:10"},{"r":9,"cat":2,"n":"Mathis D","c":"2026-10-03T00:10:54","e":"2026-10-03T01:10:54","f":"2026-10-03T01:44:37","p":"2026-10-03T01:41:37","d":2024,"rz":-1,"ct":"2026-09-22T15:51:57","on":"Mathis D","oe":"2026-10-03T01:40:04"},{"r":10,"cat":2,"n":"Pm V","c":"2026-10-03T00:46:37","e":"2026-10-03T01:46:37","f":"2026-10-03T02:20:21","p":"2026-10-03T02:17:21","d":2024,"rz":-1,"ct":"2026-09-22T15:51:57","on":"Pm V","oe":"2026-10-03T02:09:57"},{"r":11,"cat":2,"n":"François M","c":"2026-10-03T01:22:21","e":"2026-10-03T02:22:21","f":"2026-10-03T02:56:05","p":"2026-10-03T02:53:05","d":2024,"rz":-1,"ct":"2026-09-22T15:51:57","on":"François M","oe":"2026-10-03T02:39:51"},{"r":12,"cat":2,"n":"Romain R","c":"2026-10-03T01:58:05","e":"2026-10-03T02:58:05","f":"2026-10-03T03:31:48","p":"2026-10-03T03:28:48","d":2024,"rz":-1,"ct":"2026-09-22T15:51:57","on":"Romain R","oe":"2026-10-03T03:09:45"},{"r":13,"cat":2,"n":"Cyril D","c":"2026-10-03T02:33:48","e":"2026-10-03T03:33:48","f":"2026-10-03T04:07:32","p":"2026-10-03T04:04:32","d":2024,"rz":-1,"ct":"2026-09-22T15:51:57","on":"Cyril D","oe":"2026-10-03T03:39:38"},{"r":14,"cat":2,"n":"Jerome T","c":"2026-10-03T03:09:32","e":"2026-10-03T04:09:32","f":"2026-10-03T04:43:16","p":"2026-10-03T04:40:16","d":2024,"rz":-1,"ct":"2026-09-22T15:42:05","on":"Jean","oe":"2026-10-03T04:09:32"},{"r":15,"cat":1,"n":"David D","c":"2026-10-03T03:45:16","e":"2026-10-03T04:45:16","f":"2026-10-03T05:25:16","p":"2026-10-03T05:22:16","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"David D","oe":"2026-10-03T04:39:26"},{"r":16,"cat":1,"n":"Mathieu P","c":"2026-10-03T04:27:16","e":"2026-10-03T05:27:16","f":"2026-10-03T06:07:16","p":"2026-10-03T06:04:16","d":2400,"rz":30246,"ct":"2026-09-22T15:42:05","on":"Francois","oe":"2026-10-03T05:34:27"},{"r":17,"cat":1,"n":"Nicolas B","c":"2026-10-03T05:09:16","e":"2026-10-03T06:09:16","f":"2026-10-03T06:49:16","p":"2026-10-03T06:46:16","d":2400,"rz":30246,"ct":"2026-09-22T15:45:49","on":"Nicolas B","oe":"2026-10-03T06:21:46"},{"r":18,"cat":1,"n":"Ludovic M","c":"2026-10-03T05:51:16","e":"2026-10-03T06:51:16","f":"2026-10-03T07:31:16","p":"2026-10-03T07:28:16","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"Ludovic M","oe":"2026-10-03T07:00:26"},{"r":19,"cat":1,"n":"Victorien P","c":"2026-10-03T06:33:16","e":"2026-10-03T07:33:16","f":"2026-10-03T08:13:16","p":"2026-10-03T08:10:16","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"Victorien P","oe":"2026-10-03T07:47:26"},{"r":20,"cat":1,"n":"Romain D","c":"2026-10-03T07:15:16","e":"2026-10-03T08:15:16","f":"2026-10-03T08:55:16","p":"2026-10-03T08:52:16","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"Romain D","oe":"2026-10-03T08:34:26"},{"r":21,"cat":1,"n":"Pascal V","c":"2026-10-03T07:57:16","e":"2026-10-03T08:57:16","f":"2026-10-03T09:37:16","p":"2026-10-03T09:34:16","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"Pascal V","oe":"2026-10-03T09:21:26"},{"r":22,"cat":2,"n":"Pierre-Antoine V","c":"2026-10-03T08:39:16","e":"2026-10-03T09:39:16","f":"2026-10-03T10:12:59","p":"2026-10-03T10:09:59","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"Pierre-Antoine V","oe":"2026-10-03T10:08:26"},{"r":23,"cat":2,"n":"Mathis D","c":"2026-10-03T09:14:59","e":"2026-10-03T10:14:59","f":"2026-10-03T10:48:43","p":"2026-10-03T10:45:43","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"Mathis D","oe":"2026-10-03T10:38:19"},{"r":24,"cat":2,"n":"Pm V","c":"2026-10-03T09:50:43","e":"2026-10-03T10:50:43","f":"2026-10-03T11:24:27","p":"2026-10-03T11:21:27","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"Pm V","oe":"2026-10-03T11:08:13"},{"r":25,"cat":2,"n":"François M","c":"2026-10-03T10:26:27","e":"2026-10-03T11:26:27","f":"2026-10-03T12:00:10","p":"2026-10-03T11:57:10","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"François M","oe":"2026-10-03T11:38:07"},{"r":26,"cat":2,"n":"Romain R","c":"2026-10-03T11:02:10","e":"2026-10-03T12:02:10","f":"2026-10-03T12:35:54","p":"2026-10-03T12:32:54","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"Romain R","oe":"2026-10-03T12:08:00"},{"r":27,"cat":2,"n":"Cyril D","c":"2026-10-03T11:37:54","e":"2026-10-03T12:37:54","f":"2026-10-03T13:11:38","p":"2026-10-03T13:08:38","d":2024,"rz":30622,"ct":"2026-09-22T15:42:05","on":"Paul","oe":"2026-10-03T12:37:54"},{"r":28,"cat":2,"n":"Jerome T","c":"2026-10-03T12:13:38","e":"2026-10-03T13:13:38","f":"2026-10-03T13:47:21","p":"2026-10-03T13:44:21","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"Jerome T","oe":"2026-10-03T13:07:48"},{"r":29,"cat":1,"n":"David D","c":"2026-10-03T12:49:21","e":"2026-10-03T13:49:21","f":"2026-10-03T14:29:21","p":"2026-10-03T14:26:21","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"David D","oe":"2026-10-03T13:37:41"},{"r":30,"cat":1,"n":"Mathieu P","c":"2026-10-03T13:31:21","e":"2026-10-03T14:31:21","f":"2026-10-03T15:11:21","p":"2026-10-03T15:08:21","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"Mathieu P","oe":"2026-10-03T14:24:41"},{"r":31,"cat":1,"n":"Nicolas B","c":"2026-10-03T14:13:21","e":"2026-10-03T15:13:21","f":"2026-10-03T15:53:21","p":"2026-10-03T15:50:21","d":2400,"rz":30246,"ct":"2026-09-22T15:42:05","on":"Pm","oe":"2026-10-03T15:27:44"},{"r":32,"cat":1,"n":"Ludovic M","c":"2026-10-03T14:55:21","e":"2026-10-03T15:55:21","f":"2026-10-03T16:35:21","p":"2026-10-03T16:32:21","d":2400,"rz":30246,"ct":"2026-09-22T15:45:49","on":"Ludovic M","oe":"2026-10-03T16:05:21"},{"r":33,"cat":1,"n":"Victorien P","c":"2026-10-03T15:37:21","e":"2026-10-03T16:37:21","f":"2026-10-03T17:17:21","p":"2026-10-03T17:14:21","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"Victorien P","oe":"2026-10-03T16:45:41"},{"r":34,"cat":1,"n":"Romain D","c":"2026-10-03T16:19:21","e":"2026-10-03T17:19:21","f":"2026-10-03T17:59:21","p":"2026-10-03T17:56:21","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"Romain D","oe":"2026-10-03T17:32:41"},{"r":35,"cat":1,"n":"Pascal V","c":"2026-10-03T17:01:21","e":"2026-10-03T18:01:21","f":"2026-10-03T18:41:21","p":"2026-10-03T18:38:21","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"Pascal V","oe":"2026-10-03T18:19:41"},{"r":36,"cat":2,"n":"Pierre-Antoine V","c":"2026-10-03T17:43:21","e":"2026-10-03T18:43:21","f":"2026-10-03T19:17:05","p":"2026-10-03T19:14:05","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"Pierre-Antoine V","oe":"2026-10-03T19:06:41"},{"r":37,"cat":2,"n":"Mathis D","c":"2026-10-03T18:19:05","e":"2026-10-03T19:19:05","f":"2026-10-03T19:52:49","p":"2026-10-03T19:49:49","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"Mathis D","oe":"2026-10-03T19:36:35"},{"r":38,"cat":2,"n":"Pm V","c":"2026-10-03T18:54:49","e":"2026-10-03T19:54:49","f":"2026-10-03T20:28:32","p":"2026-10-03T20:25:32","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"Pm V","oe":"2026-10-03T20:06:29"},{"r":39,"cat":2,"n":"François M","c":"2026-10-03T19:30:32","e":"2026-10-03T20:30:32","f":"2026-10-03T21:04:16","p":"2026-10-03T21:01:16","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"François M","oe":"2026-10-03T20:36:22"},{"r":40,"cat":2,"n":"Romain R","c":"2026-10-03T20:06:16","e":"2026-10-03T21:06:16","f":"2026-10-03T21:40:00","p":"2026-10-03T21:37:00","d":2024,"rz":30622,"ct":"2026-09-22T15:42:05","on":"Victo","oe":"2026-10-03T21:06:16"},{"r":41,"cat":2,"n":"Cyril D","c":"2026-10-03T20:42:00","e":"2026-10-03T21:42:00","f":"2026-10-03T22:15:43","p":"2026-10-03T22:12:43","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"Cyril D","oe":"2026-10-03T21:36:10"},{"r":42,"cat":2,"n":"Jerome T","c":"2026-10-03T21:17:43","e":"2026-10-03T22:17:43","f":"2026-10-03T22:51:27","p":"2026-10-03T22:48:27","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"Jerome T","oe":"2026-10-03T22:06:03"},{"r":43,"cat":1,"n":"David D","c":"2026-10-03T21:53:27","e":"2026-10-03T22:53:27","f":"2026-10-03T23:33:27","p":"2026-10-03T23:30:27","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"David D","oe":"2026-10-03T22:35:57"},{"r":44,"cat":1,"n":"Mathieu P","c":"2026-10-03T22:35:27","e":"2026-10-03T23:35:27","f":"2026-10-04T00:15:27","p":"2026-10-04T00:12:27","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"Mathieu P","oe":"2026-10-03T23:22:57"},{"r":45,"cat":1,"n":"Nicolas B","c":"2026-10-03T23:17:27","e":"2026-10-04T00:17:27","f":"2026-10-04T00:57:27","p":"2026-10-04T00:54:27","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"Nicolas B","oe":"2026-10-04T00:09:57"},{"r":46,"cat":1,"n":"Ludovic M","c":"2026-10-03T23:59:27","e":"2026-10-04T00:59:27","f":"2026-10-04T01:39:27","p":"2026-10-04T01:36:27","d":2400,"rz":30246,"ct":"2026-09-22T15:45:49","on":"Ludovic M","oe":"2026-10-04T00:51:57"},{"r":47,"cat":1,"n":"Victorien P","c":"2026-10-04T00:41:27","e":"2026-10-04T01:41:27","f":"2026-10-04T02:21:27","p":"2026-10-04T02:18:27","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"Victorien P","oe":"2026-10-04T01:48:57"},{"r":48,"cat":1,"n":"Romain D","c":"2026-10-04T01:23:27","e":"2026-10-04T02:23:27","f":"2026-10-04T03:03:27","p":"2026-10-04T03:00:27","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"Romain D","oe":"2026-10-04T02:30:57"},{"r":49,"cat":1,"n":"Pascal V","c":"2026-10-04T02:05:27","e":"2026-10-04T03:05:27","f":"2026-10-04T03:45:27","p":"2026-10-04T03:42:27","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"Pascal V","oe":"2026-10-04T03:17:57"},{"r":50,"cat":2,"n":"Pierre-Antoine V","c":"2026-10-04T02:47:27","e":"2026-10-04T03:47:27","f":"2026-10-04T04:21:11","p":"2026-10-04T04:18:11","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"Pierre-Antoine V","oe":"2026-10-04T04:04:57"},{"r":51,"cat":2,"n":"Mathis D","c":"2026-10-04T03:23:11","e":"2026-10-04T04:23:11","f":"2026-10-04T04:56:54","p":"2026-10-04T04:53:54","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"Mathis D","oe":"2026-10-04T04:34:51"},{"r":52,"cat":2,"n":"Pm V","c":"2026-10-04T03:58:54","e":"2026-10-04T04:58:54","f":"2026-10-04T05:32:38","p":"2026-10-04T05:29:38","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"Pm V","oe":"2026-10-04T05:04:44"},{"r":53,"cat":2,"n":"François M","c":"2026-10-04T04:34:38","e":"2026-10-04T05:34:38","f":"2026-10-04T06:08:22","p":"2026-10-04T06:05:22","d":2024,"rz":30622,"ct":"2026-09-22T15:42:05","on":"Romain 2","oe":"2026-10-04T05:34:38"},{"r":54,"cat":2,"n":"Romain R","c":"2026-10-04T05:10:22","e":"2026-10-04T06:10:22","f":"2026-10-04T06:44:05","p":"2026-10-04T06:41:05","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"Romain R","oe":"2026-10-04T06:04:32"},{"r":55,"cat":2,"n":"Cyril D","c":"2026-10-04T05:46:05","e":"2026-10-04T06:46:05","f":"2026-10-04T07:19:49","p":"2026-10-04T07:16:49","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"Cyril D","oe":"2026-10-04T06:34:25"},{"r":56,"cat":2,"n":"Jerome T","c":"2026-10-04T06:21:49","e":"2026-10-04T07:21:49","f":"2026-10-04T07:55:33","p":"2026-10-04T07:52:33","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"Jerome T","oe":"2026-10-04T07:04:19"},{"r":57,"cat":1,"n":"David D","c":"2026-10-04T06:57:33","e":"2026-10-04T07:57:33","f":"2026-10-04T08:37:33","p":"2026-10-04T08:34:33","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"David D","oe":"2026-10-04T07:34:13"},{"r":58,"cat":1,"n":"Mathieu P","c":"2026-10-04T07:39:33","e":"2026-10-04T08:39:33","f":"2026-10-04T09:19:33","p":"2026-10-04T09:16:33","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"Mathieu P","oe":"2026-10-04T08:21:13"},{"r":59,"cat":1,"n":"Nicolas B","c":"2026-10-04T08:21:33","e":"2026-10-04T09:21:33","f":"2026-10-04T10:01:33","p":"2026-10-04T09:58:33","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"Nicolas B","oe":"2026-10-04T09:08:13"},{"r":60,"cat":1,"n":"Ludovic M","c":"2026-10-04T09:03:33","e":"2026-10-04T10:03:33","f":"2026-10-04T10:43:33","p":"2026-10-04T10:40:33","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"Ludovic M","oe":"2026-10-04T09:55:13"},{"r":61,"cat":1,"n":"Victorien P","c":"2026-10-04T09:45:33","e":"2026-10-04T10:45:33","f":"2026-10-04T11:25:33","p":"2026-10-04T11:22:33","d":2400,"rz":30246,"ct":"2026-09-22T15:45:49","on":"Victorien P","oe":"2026-10-04T10:35:33"},{"r":62,"cat":1,"n":"Romain D","c":"2026-10-04T10:27:33","e":"2026-10-04T11:27:33","f":"2026-10-04T12:07:33","p":"2026-10-04T12:04:33","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"Romain D","oe":"2026-10-04T11:32:33"},{"r":63,"cat":1,"n":"Pascal V","c":"2026-10-04T11:09:33","e":"2026-10-04T12:09:33","f":"2026-10-04T12:49:33","p":"2026-10-04T12:46:33","d":2400,"rz":30246,"ct":"2026-09-22T15:51:57","on":"Pascal V","oe":"2026-10-04T12:16:13"},{"r":64,"cat":2,"n":"Pierre-Antoine V","c":"2026-10-04T11:51:33","e":"2026-10-04T12:51:33","f":"2026-10-04T13:25:16","p":"2026-10-04T13:22:16","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"Pierre-Antoine V","oe":"2026-10-04T13:03:13"},{"r":65,"cat":2,"n":"Mathis D","c":"2026-10-04T12:27:16","e":"2026-10-04T13:27:16","f":"2026-10-04T14:01:00","p":"2026-10-04T13:58:00","d":2024,"rz":30622,"ct":"2026-09-22T15:51:57","on":"Mathis D","oe":"2026-10-04T13:33:06"}]};
+const JOURS=['dim','lun','mar','mer','jeu','ven','sam'];
+const REPOS_MIN=7199;
+const dep=new Date(CFG.dep),arrivee=new Date(CFG.arrivee);
+const R=CFG.relays.map(x=>({r:x.r,cat:x.cat,name:x.n,dur:x.d,conv:new Date(x.c),debut:new Date(x.e),fin:new Date(x.f),pan:new Date(x.p),
+ rep:(typeof x.rz==='number'?x.rz:-1),couru:!!x.x,prevu:x.m||'',ct:x.ct?new Date(x.ct):null,on:x.on||'',oe:x.oe?new Date(x.oe):null}));
+const PIL=CFG.pil||[];
+const names=[];
+PIL.forEach(p=>{if(p.a&&!names.includes(p.n))names.push(p.n);});
+R.forEach(x=>{if(!names.includes(x.name))names.push(x.name);});
+let SEL=null;
+const LS={get(k){try{return localStorage.getItem(k);}catch(e){return null;}},set(k,v){try{localStorage.setItem(k,v);}catch(e){}}};
+const VU=CFG.mod||CFG.maj;
+const ACK={};
+function ackOf(n){if(!(n in ACK)){let s=LS.get('mjb_ack_'+n);if(!s){s=VU;LS.set('mjb_ack_'+n,s);}ACK[n]=new Date(s);}return ACK[n];}
+function isFresh(x,n){return !!(x.ct&&x.ct>ackOf(n));}
+function ackNow(){if(SEL===null)return;LS.set('mjb_ack_'+SEL,VU);ACK[SEL]=new Date(VU);renderPanel();}
+const pad=n=>String(n).padStart(2,'0');
+const hhmm=d=>pad(d.getHours())+':'+pad(d.getMinutes());
+const jour=d=>JOURS[d.getDay()];
+const jh=d=>jour(d)+' '+hhmm(d);
+function dl(sec){sec=Math.max(0,Math.round(sec));if(sec>=86400){const j=Math.floor(sec/86400),h=Math.floor(sec%86400/3600);return j+' j '+pad(h)+' h';}
+const h=Math.floor(sec/3600),m=Math.floor(sec%3600/60);if(h>0)return h+' h '+pad(m);if(m>0)return m+' min';return `moins d'1 min`;}
+function minlbl(s){return Math.round(s/60)+' min';}
+function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function info(n){return PIL.find(p=>p.n===n)||{n:n};}
+function isDone(x,now){return x.couru||x.fin<=now;}
+function nextIdx(list,now){for(let i=0;i<list.length;i++)if(!isDone(list[i],now))return i;return -1;}
+function reposKo(x){return x.rep>=0&&x.rep<REPOS_MIN;}
+function changesFor(n,now){
+const out=[];
+R.forEach(x=>{
+ if(!x.ct||isDone(x,now)||!isFresh(x,n))return;
+ const w=`modifié ${jh(x.ct)}`;
+ if(x.name===n&&x.on===n&&x.oe)out.push({t:`<b>R${x.r}</b> : ${jh(x.oe)} &rarr; <b>${jh(x.debut)}</b>`,w:w});
+ else if(x.name===n&&x.on!==n)out.push({t:`<b>R${x.r}</b> : nouveau relais pour toi, <b>${jh(x.debut)}</b>`,w:w});
+ else if(x.on===n&&x.name!==n)out.push({t:`<b>R${x.r}</b> : relais retiré, confié à ${esc(x.name)}`,w:w});
+});
+return out;}
+function curRelay(now){
+for(const x of R){if(now>=x.debut&&now<x.fin&&!x.couru)return {s:'piste',x:x};}
+if(now<dep)return {s:'avant'};
+if(now>=arrivee)return {s:'fini'};
+for(let i=0;i<R.length-1;i++){if(isDone(R[i],now)&&!isDone(R[i+1],now))return {s:'stand',x:R[i+1]};}
+return {s:'fini'};}
+function renderTrack(){
+const el=document.getElementById('track'),now=new Date(),c=curRelay(now);
+if(c.s==='piste'){const nx=R[c.x.r];el.className='track on';
+ el.innerHTML=`<span class='tk'>En piste</span><span><b>${esc(c.x.name)}</b> · R${c.x.r} · sortie ~${hhmm(c.x.fin)}${nx?' · panneau '+hhmm(c.x.pan)+' ('+esc(nx.name)+')':''}</span>`;}
+else if(c.s==='stand'){el.className='track chg';el.innerHTML=`<span class='tk'>Changement</span><span><b>${esc(c.x.name)}</b> prend le volant (R${c.x.r})</span>`;}
+else if(c.s==='avant'){el.className='track';el.innerHTML=`<span class='tk'>Avant course</span><span>Départ ${jh(dep)}</span>`;}
+else{el.className='track';el.innerHTML=`<span class='tk'>Terminé</span><span>Course terminée</span>`;}}
+function fillMeta(){
+document.getElementById('meta').textContent=CFG.n+' pilotes · '+CFG.nrel+' relais · CAT 1 '+CFG.d1+' min · CAT 2 '+CFG.d2+' min · arrivée '+jh(arrivee);
+if(CFG.maj){const d=new Date(CFG.maj);document.getElementById('maj').textContent='Page mise à jour le '+jour(d)+' '+pad(d.getDate())+'/'+pad(d.getMonth()+1)+' à '+hhmm(d);}}
+function buildSelect(){
+const sel=document.getElementById('who');
+names.forEach((nm,i)=>{const o=document.createElement('option');o.value=String(i);o.textContent=nm;sel.appendChild(o);});
+sel.onchange=()=>{SEL=sel.value===''?null:names[+sel.value];LS.set('mjb_pilote',SEL||'');renderPanel();};
+const mem=LS.get('mjb_pilote');const ix=mem?names.indexOf(mem):-1;
+if(ix>=0){sel.value=String(ix);SEL=names[ix];}}
+function chgHtml(ch){
+if(!ch.length)return '';
+let h=`<div class='chg'><div class='ch'>Changements pour toi</div>`;
+ch.forEach(c=>{h+=`<div class='cl'><span>${c.t}</span><span class='w'>${c.w}</span></div>`;});
+return h+`<button class='ok' onclick='ackNow()'>Compris</button></div>`;}
+function renderPanel(){
+const p=document.getElementById('panel');
+if(SEL===null){p.innerHTML=`<div class='hint'>Sélectionne ton nom pour voir tes horaires, le compte à rebours avant ta convocation et ton entrée en piste.</div>`;return;}
+const now=new Date(),mine=R.filter(x=>x.name===SEL),pi=info(SEL),ch=changesFor(SEL,now);
+if(!mine.length){p.innerHTML=chgHtml(ch)+`<div class='hint'>Aucun relais attribué à ${esc(SEL)} pour le moment.</div>`;return;}
+const volant=mine.reduce((a,b)=>a+b.dur,0),nx=nextIdx(mine,now),cat=pi.c||mine[0].cat;
+const hasL=typeof pi.l==='number',lb=hasL&&pi.l>CFG.lmax;
+const lt=hasL?(lb?CFG.lmax+' max':String(Math.round(pi.l*10)/10).replace('.',',')+' kg'):'—';
+let h=`<div class='phead'><div class='ph-top'><div class='ph-name'>${esc(SEL)}</div><span class='chip'>Catégorie ${cat}</span></div><div class='ph-stats'>`;
+h+=`<div class='ps'><div class='v num'>${mine.length}</div><div class='k'>relais</div></div>`;
+h+=`<div class='ps'><div class='v num'>${dl(volant)}</div><div class='k'>volant total</div></div>`;
+h+=`<div class='ps'><div class='v num'>${minlbl((nx>=0?mine[nx]:mine[0]).dur)}</div><div class='k'>par relais</div></div>`;
+h+=`<div class='ps'><div class='v num ${lb?'bad':''}'>${lt}</div><div class='k'>lest</div></div></div></div>`;
+h+=chgHtml(ch);
+if(nx>=0){
+ const x=mine[nx],toConv=(x.conv-now)/1000,toGo=(x.debut-now)/1000,driving=(now>=x.debut&&now<x.fin&&!x.couru);
+ h+=`<div class='next'><div class='nh'><span>${driving?'Tu es en piste':'Prochain relais'}</span><span class='rn'>Relais ${x.r} · ${minlbl(x.dur)}</span></div><div class='cdrow'>`;
+ h+=`<div class='cd ${toConv<=1800&&toConv>0?'urgent':''}'><div class='k'>Convocation dans</div><div class='big num'>${toConv>0?dl(toConv):'—'}</div><div class='abs'>${jh(x.conv)}</div></div>`;
+ h+=`<div class='cd go'><div class='k'>Entrée en piste dans</div><div class='big num'>${toGo>0?dl(toGo):(driving?'en cours':'—')}</div><div class='abs'>${jh(x.debut)}</div></div></div>`;
+ if(!driving&&x.r>1){const pv=R[x.r-2];h+=`<div class='pan'>Tu montres le panneau SORTIE à <b>${esc(pv.name)}</b> vers <b>${hhmm(pv.pan)}</b></div>`;}
+ if(reposKo(x))h+=`<div class='warn'>&#9888; Repos de ${dl(x.rep)} seulement avant ce relais (minimum 2 h)</div>`;
+ h+=`</div>`;
+}else{
+ h+=`<div class='next'><div class='nh'><span>Relais terminés</span></div><div class='cd'><div class='abs' style='padding:6px 0'>Tous tes relais sont passés. Bravo.</div></div></div>`;
+}
+h+=`<div class='lbl'>Tous mes relais</div>`;
+mine.forEach((x,i)=>{
+ const isNext=i===nx,done=isDone(x,now),driving=(now>=x.debut&&now<x.fin&&!x.couru),pv=x.r>1?R[x.r-2]:null;
+ let tags='';
+ if(x.prevu&&isFresh(x,SEL))tags+=`<span class='tag m'>à la place de ${esc(x.prevu)}</span>`;
+ if(reposKo(x))tags+=`<span class='tag r'>repos ${dl(x.rep)}</span>`;
+ h+=`<div class='stint ${isNext?'next-line':''} ${done?'done':''}'><div class='rn num'>R${x.r}</div><div class='mid'><div class='e num'>${jh(x.debut)}${tags}</div>`;
+ h+=`<div class='c num'>convocation ${jh(x.conv)}${pv?' · panneau '+hhmm(pv.pan):''}</div></div>`;
+ h+=`<div class='rt'><div class='d num'>${minlbl(x.dur)}</div><div class='st ${driving?'now':''}'>${driving?'en piste':done?'fait':'à venir'}</div></div></div>`;
+});
+p.innerHTML=h;}
+function renderFull(){
+const el=document.getElementById('fullPlan'),now=new Date();
+let h=`<div class='lbl'>Planning complet — ${R.length} relais</div>`;
+R.forEach(x=>{
+ const done=isDone(x,now),tg='';
+ h+=`<div class='stint ${done?'done':''}'><div class='rn num'>R${x.r}</div><div class='mid'><div class='e'>${esc(x.name)}${tg}</div>`;
+ h+=`<div class='c num' style='color:var(--mut)'>entrée ${jh(x.debut)} · conv. ${hhmm(x.conv)}</div></div><div class='rt'><div class='d num'>${minlbl(x.dur)}</div><div class='st'>cat ${x.cat}</div></div></div>`;
+});
+el.innerHTML=h;}
+function renderLive(){
+const el=document.getElementById('live'),now=new Date(),started=now>=dep,url=CFG.live;
+let right,cls='';
+if(url&&started){right=`<a href='${esc(url)}' target='_blank' rel='noopener'>Ouvrir</a>`;cls='on';}
+else if(url){right=`<span class='btn'>Au départ</span>`;}
+else{right=`<span class='btn'>À venir</span>`;}
+el.className='live '+cls;
+const sub=url?(started?'live timing de la course':'disponible au départ de la course'):`lien communiqué par l'organisation`;
+el.innerHTML=`<span class='dot'></span><div class='lt'><div class='t'>Chronos en direct</div><div class='s'>${sub}</div></div>`+right;}
+document.getElementById('toggleAll').onclick=function(){const f=document.getElementById('fullPlan'),o=f.style.display==='none';f.style.display=o?'block':'none';this.textContent=o?'Masquer le planning':`Planning complet de l'équipe`;if(o)renderFull();};
+function tick(){
+const now=new Date(),c=document.getElementById('clock');
+if(now<dep){const d=Math.floor((dep-now)/1000),j=Math.floor(d/86400);c.innerHTML=`<span>Départ dans</span><b class='num'>`+(j>0?j+'j ':'')+pad(Math.floor(d%86400/3600))+':'+pad(Math.floor(d%3600/60))+`</b>`;}
+else if(now<=arrivee){const e=Math.floor((now-dep)/1000);c.innerHTML=`<span>En course</span><b class='num'>`+Math.floor(e/3600)+':'+pad(Math.floor(e%3600/60))+':'+pad(e%60)+`</b>`;}
+else c.innerHTML=`<span>Course</span><b>terminée</b>`;}
+function checkUpdate(){
+if(location.protocol==='file:'||!CFG.maj)return;
+fetch(location.pathname+'?v='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.text():'').then(t=>{
+ const m=t.match(/.maj.\s*:\s*.(\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d)/);
+ if(m&&m[1]!==CFG.maj)location.replace(location.pathname+'?v='+encodeURIComponent(m[1]));
+}).catch(()=>{});}
+setInterval(checkUpdate,60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkUpdate();});
+window.addEventListener('pageshow',e=>{if(e.persisted)checkUpdate();});
+fillMeta();buildSelect();renderPanel();renderLive();tick();renderTrack();
+setInterval(()=>{tick();renderLive();renderTrack();if(SEL!==null)renderPanel();},1000);
+</script>
+</body>
+</html>
